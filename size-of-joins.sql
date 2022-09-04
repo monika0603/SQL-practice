@@ -1,0 +1,63 @@
+"""
+Let’s say you work at Allstate. Allstate is running N online ads right now. The table ads contains all those ads, ranked by popularity via the id column (e.g., the entry with id = 1 is the most popular, etc.).
+
+Create a subquery or common table expression named top_ads containing the top 3 ads (by popularity) and return the number of rows that would result from the following operations
+
+ads INNER JOIN top_ads
+ads LEFT JOIN top_ads
+ads RIGHT JOIN top_ads
+ads CROSS JOIN top_ads
+Note: Please make the join_type column in your output have the values inner_join, left_join, etc. for each of their respective join types
+
+Note: Please return only one query with each number in a different row
+
+Example:
+
+Input:
+
+Column	Type
+id	INTEGER
+name	VARCHAR
+Output:
+
+Column	Type
+join_type	VARCHAR
+number_of_rows	INTEGER
+""" 
+
+WITH top_ads AS (
+	SELECT
+		id
+	FROM
+		ads
+	ORDER BY
+		id ASC
+	LIMIT 3
+)
+SELECT
+	'inner_join' AS join_type,
+	count(*) AS number_of_rows
+FROM
+	ads a
+	JOIN top_ads b ON a.id = b.id
+UNION ALL
+SELECT
+	'left_join' AS join_type,
+	count(*) AS number_of_rows
+FROM
+	ads a
+	LEFT JOIN top_ads b ON a.id = b.id
+UNION ALL
+SELECT
+	'right_join' AS join_type,
+	count(*) AS number_of_rows
+FROM
+	ads a
+	RIGHT JOIN top_ads b ON a.id = b.id
+UNION ALL
+SELECT
+	'cross_join' AS join_type,
+	count(*) AS number_of_rows
+FROM
+	ads a
+	CROSS JOIN top_ads b;
