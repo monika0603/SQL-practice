@@ -28,25 +28,11 @@ class ParkingSystem(object):
         """
         self.lotsize = [big, medium, small] 
 
-    def addCar(self, carSize):
+    def addCar(self, carType):
         """ 
         type carSize: int 
         rtype: bool 
         """
-        if carSize == 1:
-            if self.lotSize > 0:
-                self.lotsize[0] -= 1 
-                return True 
-        
-        if carSize == 2:
-            if self.lotSize > 0:
-                self.lotsize[1] -= 1 
-                return True 
-
-        if carSize == 3:
-            if self.lotSize > 0:
-                self.lotsize[2] -= 1 
-                return True 
-
-        return False 
-            
+        if self.lotsize[carType-1] == 0: return False 
+        self.lotsize[carType-1] -= 1
+        return True 
