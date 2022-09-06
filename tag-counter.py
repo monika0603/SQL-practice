@@ -27,20 +27,15 @@ def term_frequency(document):
     count_words = {}
     word_list = document.split(' ')
     total_length = len(word_list)
-    print(total_length)
-
+    
     for word in word_list:
         count_words[word] = 1 + count_words.get(word, 0)
-
-    print(count_words)
 
     output = {}
     for key, value in count_words.items():
         output[key] = round(value/total_length, 2)
 
     return output
-
-    
 
 if __name__ == "__main__":
     document = "I have a nice car with a nice tires"
