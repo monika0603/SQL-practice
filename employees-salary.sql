@@ -7,15 +7,14 @@ Example:
 Input:
 
 employees table
-
 Columns	Type
 id	INTEGER
 first_name	VARCHAR
 last_name	VARCHAR
 salary	INTEGER
 department_id	INTEGER
-departments table
 
+departments table
 Columns	Type
 id	INTEGER
 name	VARCHAR
@@ -48,3 +47,5 @@ GROUP BY d.name
 HAVING COUNT(*) >= 10
 ORDER BY 1 DESC
 LIMIT 3
+
+
